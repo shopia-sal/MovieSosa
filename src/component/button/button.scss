@@ -1,0 +1,138 @@
+// Variables (you can adjust these to match your design system)
+$main-color: #6366f1;
+$white: #ffffff;
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$border-radius: 12px;
+
+button {
+    cursor: pointer;
+    font-family: $font-family;
+    border: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    
+    &:focus-visible {
+        outline: 2px solid $main-color;
+        outline-offset: 2px;
+    }
+}
+
+.btn {
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, $main-color 0%, #8b5cf6 100%);
+    color: $white;
+    border-radius: $border-radius;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    box-shadow: 
+        0 4px 14px 0 rgba($main-color, 0.25),
+        0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+            0 8px 25px 0 rgba($main-color, 0.35),
+            0 4px 8px 0 rgba(0, 0, 0, 0.15);
+        
+        &::before {
+            opacity: 1;
+        }
+    }
+    
+    &:active {
+        transform: translateY(0);
+        box-shadow: 
+            0 2px 8px 0 rgba($main-color, 0.3),
+            0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+}
+
+.btn-outline {
+    border: 2px solid rgba($white, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    color: $white;
+    border-radius: $border-radius;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    box-shadow: 
+        0 2px 8px 0 rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, $main-color 0%, #8b5cf6 100%);
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: -1;
+    }
+    
+    &:hover {
+        border-color: transparent;
+        color: $white;
+        transform: translateY(-2px);
+        box-shadow: 
+            0 8px 25px 0 rgba($main-color, 0.25),
+            0 4px 8px 0 rgba(0, 0, 0, 0.15);
+        
+        &::before {
+            opacity: 1;
+        }
+    }
+    
+    &:active {
+        transform: translateY(0);
+        box-shadow: 
+            0 2px 8px 0 rgba($main-color, 0.2),
+            0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+}
+
+.btn.small {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    
+    &:hover {
+        transform: translateY(-1px);
+    }
+}
+
+.btn-outline.small {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    
+    &:hover {
+        transform: translateY(-1px);
+    }
+}

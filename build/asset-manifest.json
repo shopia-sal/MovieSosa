@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/SoSa_Movie/static/css/main.39afa8f6.css",
+    "main.js": "/SoSa_Movie/static/js/main.c60ab74b.js",
+    "static/media/boxicons.svg": "/SoSa_Movie/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
+    "static/media/boxicons.eot": "/SoSa_Movie/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
+    "static/media/boxicons.woff": "/SoSa_Movie/static/media/boxicons.d12afc36557395143e4b.woff",
+    "static/media/boxicons.ttf": "/SoSa_Movie/static/media/boxicons.db9ddb1898dbd76badca.ttf",
+    "static/media/boxicons.woff2": "/SoSa_Movie/static/media/boxicons.df635aaf04cd75132f62.woff2",
+    "static/media/footer-bg.jpg": "/SoSa_Movie/static/media/footer-bg.95e08549cbd6f078da60.jpg",
+    "static/media/logo2.png": "/SoSa_Movie/static/media/logo2.da92ff75c97bc00d0258.png",
+    "index.html": "/SoSa_Movie/index.html",
+    "main.39afa8f6.css.map": "/SoSa_Movie/static/css/main.39afa8f6.css.map",
+    "main.c60ab74b.js.map": "/SoSa_Movie/static/js/main.c60ab74b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.39afa8f6.css",
+    "static/js/main.c60ab74b.js"
+  ]
+}

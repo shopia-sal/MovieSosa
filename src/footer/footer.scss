@@ -1,0 +1,268 @@
+// Modern color palette
+$primary-color: #1a1a2e;
+$secondary-color: #16213e;
+$accent-color: #ff6b6b;
+$accent-secondary: #4ecdc4;
+$text-primary: #ffffff;
+$text-secondary: #cccccc;
+$text-muted: #888888;
+$border-color: #333333;
+
+.footer {
+    position: relative;
+    background: $primary-color;
+    padding: 4rem 0 2rem;
+    margin-top: auto;
+    overflow: hidden;
+    border-top: 1px solid $border-color;
+    
+    // Background overlay effect
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba($accent-color, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba($accent-secondary, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    // Subtle top border
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, $accent-color 50%, transparent 100%);
+    }
+}
+
+.footer__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+.footer_content__logo {
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        
+        @media (max-width: 768px) {
+            justify-content: center;
+        }
+        
+        img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba($accent-color, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba($accent-color, 0.3);
+            }
+        }
+        
+        a {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: $text-primary;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, $text-primary 0%, $accent-color 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+            
+            &:hover {
+                transform: translateY(-2px);
+                filter: brightness(1.2);
+            }
+        }
+    }
+}
+
+.footer__content_menus {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.footer__content__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    
+    &:first-child::before {
+        content: 'MAIN';
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: $accent-color;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+    
+    &:nth-child(2)::before {
+        content: 'FEATURES';
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: $accent-secondary;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+    
+    &:nth-child(3)::before {
+        content: 'CONTENT';
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: $accent-color;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+    
+    a {
+        color: $text-secondary;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.6;
+        padding: 0.5rem 0;
+        border-radius: 6px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        border-left: 2px solid transparent;
+        padding-left: 1rem;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, $accent-color, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        
+        &:hover {
+            color: $text-primary;
+            transform: translateX(8px);
+            
+            &::before {
+                width: 100%;
+            }
+        }
+        
+        &:active {
+            transform: translateX(4px);
+        }
+    }
+}
+
+// Container utility class
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+// Additional responsive improvements
+@media (max-width: 1024px) {
+    .footer {
+        padding: 3rem 0 1.5rem;
+    }
+    
+    .footer__content {
+        gap: 2.5rem;
+    }
+    
+    .footer__content_menus {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+    
+    .footer__content_menus {
+        gap: 1.5rem;
+    }
+    
+    .footer__content__menu {
+        &::before {
+            text-align: center;
+        }
+        
+        a {
+            border-left: none;
+            border-bottom: 1px solid transparent;
+            padding-left: 0;
+            text-align: center;
+            
+            &:hover {
+                border-left: none;
+                border-bottom-color: $accent-color;
+                padding-left: 0;
+                background: rgba($accent-color, 0.05);
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+    
+    .footer__content {
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+    
+    .footer__content_menus {
+        gap: 1rem;
+    }
+    
+    .footer__content__menu a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+    }
+}

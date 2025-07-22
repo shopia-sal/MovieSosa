@@ -1,0 +1,457 @@
+@use '../../scss/' as *;
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    padding: 2rem 0;
+    position: relative;
+
+    // Responsive breakpoints dengan tetap mempertahankan proporsi
+    @include tablet {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+        padding: 1.5rem 0;
+    }
+
+    @include mobile {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    // Untuk screen yang sangat kecil
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    // Grid animation entrance
+    opacity: 0;
+    animation: fadeInGrid 0.6s ease forwards;
+
+    // Stagger animation untuk items
+    .movie-card__link {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.6s ease forwards;
+
+        @for $i from 1 through 24 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.03}s;
+            }
+        }
+    }
+
+    // Loading state
+    &.loading {
+        .movie-card__link {
+            animation: pulse 2s infinite;
+        }
+    }
+
+    // Empty state styling
+    &:empty::after {
+        content: "No movies found";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        width: 100%;
+        grid-column: 1 / -1;
+    }
+
+    &__loadmore {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 2rem;
+        padding: 2rem 0;
+
+        .btn {
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+
+            // Hover gradient effect
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                transition: left 0.3s ease;
+                z-index: -1;
+            }
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+                border-color: rgba(102, 126, 234, 0.5);
+
+                &::before {
+                    left: 0;
+                }
+            }
+
+            &:active {
+                transform: translateY(-1px);
+            }
+
+            // Loading state
+            &.loading {
+                pointer-events: none;
+                opacity: 0.7;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    border-top: 2px solid white;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: spin 1s linear infinite;
+                }
+            }
+        }
+
+        @include mobile {
+            margin-top: 1.5rem;
+            padding: 1.5rem 0;
+
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.movie-search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+
+    @include mobile {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    input {
+        flex: 1;
+        width: 100%;
+        padding: 1rem 1.5rem;
+        // HAPUS padding-right karena button sudah di luar
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        outline: none;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 500;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+        }
+
+        &:focus {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 3px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+                transform: translateX(5px);
+            }
+        }
+
+        // Remove autofill styling
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 1000px transparent inset;
+            -webkit-text-fill-color: white;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        @include mobile {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    button {
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 25px;
+        height: 50px;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+
+        // Hover gradient effect
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+
+            &::before {
+                left: 0;
+            }
+        }
+
+        &:active {
+            transform: translateY(-1px);
+        }
+
+        &::after {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        @include mobile {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+
+            &::after {
+                margin-left: 0.3rem;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    // Search suggestions (jika diperlukan nanti)
+    .search-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        margin-top: 0.5rem;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 10;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+        .suggestion-item {
+            padding: 1rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+            &:hover {
+                background: rgba(102, 126, 234, 0.2);
+                color: white;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+// Section styling untuk search area
+.section {
+    margin-bottom: 3rem;
+    
+    &.mb-3 {
+        margin-bottom: 3rem;
+    }
+
+    @include mobile {
+        margin-bottom: 2rem;
+        
+        &.mb-3 {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+// Animation keyframes
+@keyframes fadeInGrid {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+// Responsive grid enhancements untuk large screens
+@media (min-width: 1400px) {
+    .movie-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .movie-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+// Loading skeleton untuk grid items
+.movie-grid.loading {
+    .movie-card__link {
+        .movie-card {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.1) 25%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.1) 75%
+            );
+            background-size: 200% 100%;
+            animation: loading-shimmer 2s infinite;
+        }
+
+        .movie-card__title {
+            background: rgba(255, 255, 255, 0.1);
+            color: transparent;
+            border-radius: 4px;
+        }
+    }
+}
+
+@keyframes loading-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+    .movie-grid,
+    .movie-grid .movie-card__link,
+    .movie-search,
+    .movie-search input,
+    .movie-search button {
+        animation: none;
+        transition: none;
+    }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+    .movie-search {
+        input {
+            border: 2px solid white;
+            background: black;
+            color: white;
+            
+            &::placeholder {
+                color: #ccc;
+            }
+        }
+
+        button {
+            background: white;
+            color: black;
+            border: 2px solid white;
+        }
+    }
+}
+
+// Print styles
+@media print {
+    .movie-search {
+        display: none;
+    }
+    
+    .movie-grid__loadmore {
+        display: none;
+    }
+}
