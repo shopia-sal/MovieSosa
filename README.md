@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# movie_sosa
+SoSa Movie adalah aplikasi web untuk menelusuri informasi film dan TV series, mulai dari daftar film, trailer, hingga detail lengkap. Aplikasi ini dibangun menggunakan React JS dan API dari The Movie Database (TMDb).
+# API yang Digunakan
+link API: https://www.themoviedb.org/documentation/api 
+# Fitur-fitur Utama
+1. search: fitur untuk mencari film dan TV seri berdasarkan judul
+2. Home: Menampilkan konten populer seperti film dan serial TV
+3. List Movie: Menampilkan daftar film berdasarkan kategori (upcoming dan popular)
+4. List TV: Menampilkan daftar TV series berdasarkan kategori.
+5. Detail Movie/TV: Informasi lengkap dari film/TV series yang dipilih.
+6. Video Trailer: Tampilkan video trailer dari film/TV series.
+# Struktur Halaman & Routing
+| Halaman         | Path               | Keterangan                                         |
+| --------------- | ------------------ | -------------------------------------------------- |
+| Home            | `/`                | Menampilkan konten populer                         |
+| Movie List      | `/movie`           | Daftar semua film                                  |
+| TV List         | `/tv`              | Daftar semua TV series                             |
+| Detail Movie/TV | `/:category/:id`   | Detail lengkap film/TV berdasarkan kategori dan ID |
+| Search Result   | `/search/:keyword` | Menampilkan hasil pencarian berdasarkan kata kunci |
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Cara Menjalankan Secara Lokal
+1. Clone repository: git clone <repository-url>
+2. Masuk ke folder proyek: cd movie_sosa
+3. Install dependencies: npm install
+4. Jalankan aplikasi: npm start
+5. Akses di browser: http://localhost:3000
