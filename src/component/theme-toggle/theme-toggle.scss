@@ -1,0 +1,152 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+
+  &:hover {
+    background: var(--hover-bg);
+  }
+
+  &__track {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: var(--toggle-track-bg);
+    border-radius: 13px;
+    border: 2px solid var(--toggle-border);
+    transition: all 0.3s ease;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--toggle-track-gradient);
+      border-radius: inherit;
+    }
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--toggle-thumb-bg);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--toggle-thumb-shadow);
+    z-index: 2;
+
+    [data-theme="light"] & {
+      transform: translateX(22px);
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    color: var(--toggle-icon-color);
+    transition: all 0.3s ease;
+
+    i {
+      transition: all 0.3s ease;
+    }
+  }
+
+  &__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  // Hover effects
+  &:hover {
+    .theme-toggle__track {
+      border-color: var(--toggle-border-hover);
+      box-shadow: 0 0 0 3px var(--toggle-glow);
+    }
+
+    .theme-toggle__thumb {
+      transform: scale(1.1);
+      
+      [data-theme="light"] & {
+        transform: translateX(22px) scale(1.1);
+      }
+    }
+
+    .theme-toggle__icon i {
+      transform: rotate(15deg);
+    }
+  }
+
+  // Active state
+  &:active {
+    .theme-toggle__thumb {
+      transform: scale(0.95);
+      
+      [data-theme="light"] & {
+        transform: translateX(22px) scale(0.95);
+      }
+    }
+  }
+
+  // Focus state for accessibility
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .theme-toggle {
+    gap: 0.5rem;
+    padding: 0.3rem;
+
+    &__track {
+      width: 44px;
+      height: 24px;
+    }
+
+    &__thumb {
+      width: 16px;
+      height: 16px;
+
+      [data-theme="light"] & {
+        transform: translateX(18px);
+      }
+    }
+
+    &:hover .theme-toggle__thumb {
+      [data-theme="light"] & {
+        transform: translateX(18px) scale(1.1);
+      }
+    }
+
+    &:active .theme-toggle__thumb {
+      [data-theme="light"] & {
+        transform: translateX(18px) scale(0.95);
+      }
+    }
+  }
+}
