@@ -1,46 +1,60 @@
-import React from 'react';
+import { Link } from "react-router-dom"
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa"
 
-import './footer.scss';
-
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-
-import bg from '../assets/footer-bg.jpg'
-import logo from '../assets/logo2.png';
-
-
+import "./footer.scss"
 
 const Footer = () => {
   return (
-    <div className="footer" >
-      <div className="footer__content container">
-        <div className="footer_content__logo">
-          <div className="logo">
-            <img src={logo} alt="" />
-            <Link to="/">SOSA</Link>
+    <footer className="footer">
+      <div className="container">
+        <div className="footer__content">
+          <div className="footer__links">
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+          <div className="footer__social">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="facebook"
+              aria-label="Follow us on Facebook"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="twitter"
+              aria-label="Follow us on Twitter"
+            >
+              <FaTwitter />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagram"
+              aria-label="Follow us on Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="linkedin"
+              aria-label="Follow us on LinkedIn"
+            >
+              <FaLinkedinIn />
+            </a>
           </div>
         </div>
-        <div className="footer__content_menus">
-            <div className="footer__content__menu">
-              <Link to="/">Home</Link>
-              <Link to="/">Contact us</Link>
-              <Link to="/">Term of services</Link>
-              <Link to="/">About us</Link>
-            </div>
-            <div className="footer__content__menu">
-              <Link to="/">Live</Link>
-              <Link to="/">FAQ</Link>
-              <Link to="/">Premium</Link>
-              <Link to="/">Privacy police</Link>
-            </div>
-            <div className="footer__content__menu">
-              <Link to="/">You must watch</Link>
-              <Link to="/">Recent release</Link>
-              <Link to="/">Top IMDB</Link>
-            </div>
-        </div>
+        <p className="footer__copyright">Created By Coding with SOSA</p>
       </div>
-    </div>
+    </footer>
   )
 }
 
-export default Footer;
+export default Footer
