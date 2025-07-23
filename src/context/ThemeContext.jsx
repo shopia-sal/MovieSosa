@@ -13,18 +13,20 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("dark")
+  const [theme, setTheme] = useState("dark") // Pastikan default adalah dark
 
+  // Load theme from localStorage on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme")
     if (savedTheme) {
       setTheme(savedTheme)
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-      setTheme(prefersDark ? "dark" : "light")
+      // Default to dark theme instead of checking system preference
+      setTheme("dark")
     }
   }, [])
 
+  // Apply theme to document and save to localStorage
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme)
     localStorage.setItem("theme", theme)
