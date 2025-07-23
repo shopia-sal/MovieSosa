@@ -1,0 +1,448 @@
+@use '../../scss/' as *;
+
+.comment-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  &__header {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+      }
+
+      @include mobile {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.comment-form {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__name {
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    font-family: $font-family;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:focus {
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @include mobile {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__text {
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    font-family: $font-family;
+    resize: vertical;
+    min-height: 100px;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:focus {
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @include mobile {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      min-height: 80px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__submit {
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 25px;
+
+    @include mobile {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+
+  @include mobile {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comments-empty {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+
+  @include mobile {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+.comment-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+
+    @include mobile {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  &__avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    flex-shrink: 0;
+
+    @include mobile {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+  }
+
+  &__meta {
+    flex: 1;
+  }
+
+  &__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 0.3rem 0;
+
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+
+  &__timestamp {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+
+    @include mobile {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__edited {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+
+    @include mobile {
+      align-self: flex-end;
+    }
+  }
+
+  &__content {
+    margin-left: 3.5rem;
+
+    @include mobile {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+
+  &__text {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 1rem;
+    word-wrap: break-word;
+
+    @include mobile {
+      font-size: 0.9rem;
+    }
+  }
+
+  @include mobile {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+}
+
+.comment-action {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+
+  &--edit {
+    background: rgba(102, 126, 234, 0.2);
+    color: #667eea;
+
+    &:hover {
+      background: rgba(102, 126, 234, 0.3);
+      transform: scale(1.1);
+    }
+  }
+
+  &--delete {
+    background: rgba(255, 69, 58, 0.2);
+    color: #ff453a;
+
+    &:hover {
+      background: rgba(255, 69, 58, 0.3);
+      transform: scale(1.1);
+    }
+  }
+
+  &--save {
+    background: rgba(52, 199, 89, 0.2);
+    color: #34c759;
+
+    &:hover {
+      background: rgba(52, 199, 89, 0.3);
+      transform: scale(1.1);
+    }
+  }
+
+  &--cancel {
+    background: rgba(255, 149, 0, 0.2);
+    color: #ff9500;
+
+    &:hover {
+      background: rgba(255, 149, 0, 0.3);
+      transform: scale(1.1);
+    }
+  }
+
+  @include mobile {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+.comment-edit {
+  &__name {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: $font-family;
+    outline: none;
+    width: 200px;
+
+    &:focus {
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+    }
+
+    @include mobile {
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+
+  &__text {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem;
+    color: white;
+    font-size: 1rem;
+    font-family: $font-family;
+    resize: vertical;
+    width: 100%;
+    outline: none;
+
+    &:focus {
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+    }
+
+    @include mobile {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Stagger animation for comments
+.comment-item {
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .comment-item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .comment-action {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .comment-form,
+  .comment-item {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .comment-form__name,
+  .comment-form__text,
+  .comment-edit__name,
+  .comment-edit__text {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+// Print styles
+@media print {
+  .comment-section {
+    .comment-form,
+    .comment-item__actions {
+      display: none;
+    }
+
+    .comment-item {
+      background: white;
+      color: black;
+      border: 1px solid #ccc;
+    }
+  }
+}
