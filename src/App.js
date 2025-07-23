@@ -5,11 +5,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './component/header/Header';
 import Footer from './footer/Footer';
+import { ThemeProvider } from "./context/ThemeContext"
 
 import Routes from './config/Routes';
 
 function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
       <Route render={props => (
         <>
@@ -19,6 +21,7 @@ function App() {
         </>
       )}/>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
